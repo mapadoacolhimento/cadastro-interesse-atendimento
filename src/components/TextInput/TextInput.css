@@ -1,0 +1,23 @@
+.input-text-container .rt-TextFieldRoot {
+	height: var(--space-8);
+	background-color: var(--gray-2);
+	font-size: var(--font-size-2);
+}
+
+.input-text-container label {
+	position: absolute;
+	top: 50%;
+	left: 1rem;
+	transform: translateY(-50%);
+	transition: all 0.2s ease;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.input-text-container label.active {
+	top: 0;
+	left: 1rem;
+	visibility: visible;
+	background-color: white;
+	line-height: 1;
+}

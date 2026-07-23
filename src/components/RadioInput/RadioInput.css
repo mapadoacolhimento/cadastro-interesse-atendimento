@@ -1,0 +1,8 @@
+.radio[aria-checked="true"]::after {
+	box-shadow: none;
+	border: 1px solid var(--accent-8);
+}
+
+.radio[aria-checked="true"] {
+	--card-background-color: var(--accent-a3);
+}

@@ -1,0 +1,62 @@
+.select-input-container {
+	font-size: var(--font-size-2);
+}
+
+.select-input-container label {
+	position: absolute;
+	top: 50%;
+	left: 1rem;
+	transform: translateY(-50%);
+	transition: all 0.2s ease;
+	pointer-events: none;
+	/* visibility cant be hidden, otherwise a11y tests wont pass */
+	/* visibility: hidden; */
+}
+
+.select-input-container label.active {
+	top: 0;
+	left: 1rem;
+	visibility: visible;
+	background-color: white;
+	line-height: 1;
+	z-index: 1;
+}
+
+.select-input-container .custom-select__control {
+	background-color: var(--gray-2);
+	height: var(--space-8);
+	border-radius: var(--radius-3);
+}
+
+.select-input-container .custom-select__control--is-focused,
+.select-input-container .custom-select__control--is-focused:hover {
+	border-color: var(--focus-8);
+	box-shadow: 0 0 0 1px var(--focus-8);
+}
+
+.select-input-container .custom-select__single-value {
+	color: var(--gray-10);
+}
+
+.select-input-container .custom-select__single-value.custom-select--with-value {
+	color: var(--gray-12);
+}
+
+.select-input-container .custom-select__option:hover,
+.select-input-container .custom-select__option--is-focused {
+	background-color: var(--accent-a3);
+	color: var(--gray-12);
+}
+
+.select-input-container .custom-select__option--is-selected {
+	background-color: var(--purple-9);
+	color: white;
+}
+
+.select-input-container .custom-select__menu {
+	z-index: 2;
+}
+
+.select-input-container .custom-select__indicator-separator {
+	display: none;
+}

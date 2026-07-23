@@ -1,0 +1,42 @@
+body {
+	margin: 0;
+}
+
+fieldset {
+	border: none;
+}
+
+.rt-BaseButton {
+	font-family: var(--heading-font-family);
+	font-weight: bold;
+	font-size: var(--font-size-3);
+	text-transform: uppercase;
+}
+
+.radix-themes,
+.rt-BaseButton:where(.rt-r-size-4) {
+	--base-button-height: var(--space-7);
+}
+
+.radix-themes {
+	--default-font-family: var(--font-nunito-sans);
+	--heading-font-family: var(--font-idealista);
+}
+
+.rt-ProgressRoot:where(.rt-variant-soft) {
+	background-color: #ebe5ef;
+}
+
+.rt-Strong {
+	color: var(--purple-9);
+}
+
+.rt-BaseButton a {
+	color: white;
+	text-decoration: none;
+}
+
+.volunteer-not-found__card.rt-Card:where(.rt-variant-surface) {
+	--card-background-color: var(--yellow-2);
+	--card-border-width: 0;
+}

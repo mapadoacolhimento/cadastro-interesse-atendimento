@@ -1,0 +1,21 @@
+.description {
+	visibility: hidden;
+	opacity: 0;
+	transition:
+		visibility 0s,
+		opacity 0.2s linear;
+}
+
+.description.visible {
+	visibility: visible;
+	opacity: 1;
+}
+
+.arrow {
+	margin-left: 5px;
+	transition: transform 0.2s;
+}
+
+.arrow.rotated {
+	transform: rotate(180deg);
+}
