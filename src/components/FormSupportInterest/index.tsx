@@ -139,7 +139,7 @@ export default function FormSupportInterest() {
 								</Flex>
 							</Flex>
 							<Text as={"p"} size={"2"} align={"center"}>
-					         Se você precisa de um atendimento de urgência, Ligue 180 e/ou
+					         Se você precisa de um atendimento de urgência, Ligue 180 e/ou{" "}
 								<Strong>
 								<ExternalLink
 								href="https://www.mapadoacolhimento.org/servicos-publicos/"
@@ -149,7 +149,7 @@ export default function FormSupportInterest() {
 								busque o serviço público
 								</ExternalLink>
 								</Strong>
-								mais próximo de você. 
+								{" "}mais próximo de você. 
 							</Text>
 							<Text as={"p"} size={"2"} align={"center"}>
 							Ao deixar seus dados você está de acordo com a nossa{" "}

@@ -1,5 +1,5 @@
-import MultiStepForm from "@/components/FormSupportInterest";
+import FormSupportInterest from "@/components/FormSupportInterest";
 
 export default async function Page() {
-	return <MultiStepForm />;
+	return <FormSupportInterest />;
 }

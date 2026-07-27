@@ -74,6 +74,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 				aria-invalid={!!hasError}
 				aria-labelledby={`select-label-${field.name}`}
 				isLoading={isLoading}
+				instanceId={name}
 			/>
 			<ErrorMessage name={name} />
 		</Box>
