@@ -2,6 +2,9 @@
   "name": "cadastro-interesse-atendimento",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +12,7 @@
     "lint": "eslint",
     "db:generate": "prisma generate --schema prisma/schema.prisma",
     "test": "vitest -c ./vitest.config.unit.mjs",
-		"test:unit:ci": "vitest run -c ./vitest.config.unit.mjs --coverage",
+    "test:unit:ci": "vitest run -c ./vitest.config.unit.mjs --coverage",
     "postinstall": "prisma generate --schema prisma/schema.prisma"
   },
   "dependencies": {
@@ -21,7 +24,6 @@
     "@radix-ui/themes": "^3.1.1",
     "dotenv": "^17.4.2",
     "formik": "^2.4.6",
-    "newrelic": "^12.4.0",
     "next": "16.2.11",
     "pino": "^9.4.0",
     "react": "19.2.4",
