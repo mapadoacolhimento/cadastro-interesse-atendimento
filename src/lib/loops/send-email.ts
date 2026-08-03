@@ -1,4 +1,5 @@
 import { getErrorMessage } from "@/utils";
+import { LOOPS_API_KEY } from "../constants";
 
 export default async function sendEmail(
   email: string,
@@ -7,7 +8,7 @@ export default async function sendEmail(
 ): Promise<boolean> {
   try {
     const endpoint = "https://app.loops.so/api/v1/transactional";
-    const apiKey = process.env["LOOPS_API_KEY"];
+    const apiKey = LOOPS_API_KEY;
 
     const response = await fetch(endpoint, {
       body: JSON.stringify({

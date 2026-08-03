@@ -37,3 +37,5 @@ export const supportTypeOptions = [
 ];
 
 export const CONFIRM_REGISTRATION_EMAIL_ID = "1234";
+
+export const LOOPS_API_KEY = process.env["LOOPS_API_KEY"]
