@@ -80,11 +80,13 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 					aria-invalid={hasError ? "true" : "false"}
 					color={hasError ? "red" : "purple"}
 				>
-					<TextField.Root size={"3"}>
+					{(inputProps: React.ComponentProps<typeof TextField.Root>) => (
+					<TextField.Root {...inputProps} size={"3"}>
 						<LoadingSpinner isLoading={!!props.isLoading} />
 					</TextField.Root>
+					)}
 				</InputMask>
-			) : (
+			): (
 				<TextField.Root
 					{...field}
 					{...props}

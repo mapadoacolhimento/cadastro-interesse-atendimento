@@ -8,7 +8,7 @@ import { prisma } from "@/lib/db";
 async function upsertSupportInterestData(values: Values) {
 	try {
 
-		const supportInterestData = await prisma.supportInterestData.upsert({
+		const supportInterestRegisterData = await prisma.supportInterestRegisterData.upsert({
 			where: {
 				email: values.email,
 			},
@@ -21,7 +21,7 @@ async function upsertSupportInterestData(values: Values) {
 			},
 		});
 
-		return Response.json({ id: supportInterestData.id });
+		return Response.json({ id: supportInterestRegisterData.id });
 	} catch (e) {
 		const error = e as Record<string, unknown>;
 		if (error["name"] === "ValidationError") {

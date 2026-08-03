@@ -1,11 +1,11 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
- // url      = env("MONGO_DB_URL")
+  url      = env("MONGO_DB_URL")
 }
 
 enum SupportType {
@@ -61,12 +61,14 @@ model MsrRegisterData {
   riskFactors                 String[]
 }
 
-model SupportInterestData {
+model SupportInterestRegisterData {
   id                          String        @id @default(auto()) @map("_id") @db.ObjectId
   email                       String        @unique
   confirmEmail                String
   firstName                   String
   state                       String
   supportType                 String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 
 }
