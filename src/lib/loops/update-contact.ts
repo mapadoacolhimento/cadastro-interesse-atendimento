@@ -1,21 +1,23 @@
 import { getErrorMessage } from "@/utils";
 import { LOOPS_API_KEY } from "../constants";
 
-export default async function createContact(
+export default async function updateContact(
   email: string,
   firstName: string,
+  state: string,
 ): Promise<boolean> {
   try {
-    const endpoint = "https://app.loops.so/api/v1/contacts/create";
+    const endpoint = "https://app.loops.so/api/v1/contacts/update";
     const apiKey = LOOPS_API_KEY;
 
     const response = await fetch(endpoint, {
       body: JSON.stringify({
         email: email,
         firstName: firstName,
-        userGroup: "support-interest",
+        interesseEmAtendimento: true,
+        state: state
       }),
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,

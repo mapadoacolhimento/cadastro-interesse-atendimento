@@ -4,7 +4,7 @@ import { formatRegisterFormValues } from "@/utils";
 import {useState,} from "react";
 import { useRouter } from "next/navigation";
 import { Form, Formik } from "formik";
-import { Box, Flex, Link as ExternalLink,Text, Strong } from "@radix-ui/themes";
+import { Box, Flex, Link as ExternalLink,Text, Strong, Button } from "@radix-ui/themes";
 import { Illustration } from "@/components";
 import { Status,type Values } from "@/types";
 import * as Yup from "yup";
@@ -23,8 +23,7 @@ const formSupportInterestFieldsSchema = Yup.object({
 	confirmEmail: Yup.string()
 		.oneOf([Yup.ref("email")], "Os e-mails precisam ser iguais.")
 		.required("Esse campo é obrigatório."),
-	supportType: Yup.array()
-		.of(Yup.string().oneOf(["psychological", "legal", "legal_and_psychological"]))
+	supportType: Yup.string().oneOf(["psychological", "legal", "legal_and_psychological"])
 		.required("Esse campo é obrigatório."),
 });
 
@@ -136,7 +135,11 @@ export default function FormSupportInterest() {
 							>
 								<Flex direction={"column"} gap={"4"} width={"100%"}>
 								< FormSupportInterestFields />
+								<Button size={"4"} type={"submit"}>						
+								Enviar					
+								</Button>
 								</Flex>
+
 							</Flex>
 							<Text as={"p"} size={"2"} align={"center"}>
 					         Se você precisa de um atendimento de urgência, Ligue 180 e/ou{" "}

@@ -11,7 +11,7 @@ import sendEmail from "../loops/send-email";
 
 const email = "maria@example.com";
 const transactionalId = "confirm-registration-email-id";
-const emailVars = { firsTName: "Maria" };
+const firsTName = "Maria";
 
 describe("sendEmail", () => {
 	afterEach(() => {
@@ -21,7 +21,7 @@ describe("sendEmail", () => {
 	it("returns true when the fetch request succeeds", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: true } as Response);
 
-		const result = await sendEmail(email, transactionalId, emailVars);
+		const result = await sendEmail(email, transactionalId, firsTName);
 
 		expect(result).toBe(true);
 		expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -37,7 +37,7 @@ describe("sendEmail", () => {
 					email,
 					transactionalId,
 					dataVariables: {
-						...emailVars,
+						first_name: firsTName,
 					},
 				}),
 			})
@@ -47,7 +47,7 @@ describe("sendEmail", () => {
 	it("returns false when the fetch response is not ok", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: false, statusText: "Bad Request" } as Response);
 
-		const result = await sendEmail(email, transactionalId, emailVars);
+		const result = await sendEmail(email, transactionalId, firsTName);
 
 		expect(result).toBe(false);
 	});
@@ -55,7 +55,7 @@ describe("sendEmail", () => {
 	it("returns false when fetch throws an error", async () => {
 		mockFetch.mockRejectedValueOnce(new Error("network failure"));
 
-		const result = await sendEmail(email, transactionalId, emailVars);
+		const result = await sendEmail(email, transactionalId, firsTName);
 
 		expect(result).toBe(false);
 	});

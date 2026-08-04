@@ -7,10 +7,11 @@ vi.mock("../constants", () => ({
 const mockFetch = vi.fn();
 vi.stubGlobal("fetch", mockFetch);
 
-import createContact from "../loops/create-contact";
+import updateContact from "../loops/update-contact";
 
 const email = "joana@example.com";
 const firstName = "Joana";
+const state = "SP";
 
 describe("createContact", () => {
 	afterEach(() => {
@@ -20,14 +21,14 @@ describe("createContact", () => {
 	it("returns true when the fetch request succeeds", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: true } as Response);
 
-		const result = await createContact(email, firstName);
+		const result = await updateContact(email, firstName, state);
 
 		expect(result).toBe(true);
 		expect(mockFetch).toHaveBeenCalledTimes(1);
 		expect(mockFetch).toHaveBeenCalledWith(
-			"https://app.loops.so/api/v1/contacts/create",
+			"https://app.loops.so/api/v1/contacts/update",
 			expect.objectContaining({
-				method: "POST",
+				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: "Bearer test-loops-api-key",
@@ -35,7 +36,8 @@ describe("createContact", () => {
 				body: JSON.stringify({
 					email,
 					firstName,
-					userGroup: "support-interest",
+					interesseEmAtendimento: true,
+        			state: state
 				}),
 			})
 		);
@@ -44,7 +46,7 @@ describe("createContact", () => {
 	it("returns false when the fetch response is not ok", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: false, statusText: "Bad Request" } as Response);
 
-		const result = await createContact(email, firstName);
+		const result = await updateContact(email, firstName, state);
 
 		expect(result).toBe(false);
 	});
@@ -52,7 +54,7 @@ describe("createContact", () => {
 	it("returns false when fetch throws an error", async () => {
 		mockFetch.mockRejectedValueOnce(new Error("network failure"));
 
-		const result = await createContact(email, firstName);
+		const result = await updateContact(email, firstName, state);
 
 		expect(result).toBe(false);
 	});

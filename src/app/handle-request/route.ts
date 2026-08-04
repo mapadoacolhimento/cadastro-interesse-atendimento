@@ -2,7 +2,7 @@
 import * as Yup from "yup";
 import {
 	CONFIRM_REGISTRATION_EMAIL_ID,
-	createContact,
+	updateContact,
 	logger,
 	sendEmail,
 	upsertSupportInterestData,
@@ -29,10 +29,13 @@ export async function POST(request: Request) {
 
 		//salva no mongodb
 		response = await upsertSupportInterestData(payload);
-		//salva contato no loops como UserGroup= interesse-atrndimento tag=suppotType
-		await createContact( payload.email, payload.firstName); 
-		//envia
-		await sendEmail(payload.email, CONFIRM_REGISTRATION_EMAIL_ID, {firsTName: payload.firstName})
+		
+		//envia email
+		await sendEmail(payload.email, CONFIRM_REGISTRATION_EMAIL_ID, payload.firstName)
+		
+		//atualiza contato no loops
+		await updateContact( payload.email, payload.firstName, payload.state); 
+		
 
 		return Response.json(response);
 	} catch (e) {
