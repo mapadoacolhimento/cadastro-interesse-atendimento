@@ -9,13 +9,13 @@ export default function Page() {
 	return (
 		<>
 			<Box>
-				<MainTitle>Cadstro Finalizado!</MainTitle>
+				<MainTitle>Recebemos seu registro de interesse.</MainTitle>
 				<Text
 					as={"p"}
 					align={"center"}
 					style={{ paddingBottom: "var(--space-5)" }}
 				>
-					Entraremos em contato por e-mail assim que o cadastro for reaberto.
+					Obrigada por confiar em nós para dar esse passo e buscar apoio. Você será avisada por e-mail assim que o cadastro reabrir. Fique de olho na sua caixa de entrada!
 				</Text>
 				<ExtraSupport />
 			</Box>
