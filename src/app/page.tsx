@@ -10,6 +10,7 @@ import {
 } from "@radix-ui/themes";
 import Illustration from "@/components/Illustration";
 import MainTitle from "@/components/MainTitle";
+import Image from "next/image";
 
 export default function Homepage() {
 	return (
@@ -42,7 +43,8 @@ export default function Homepage() {
 						}}
 					>
 						<li>
-							<Text size={{ initial: "2", md: "3" }}>Estamos com muitas mulheres na fila de espera por um atendimento e, no momento, não temos voluntárias suficientes para acolher novos pedidos.</Text>
+							<Image src="/icons/heart.svg" alt="Ícone de um coração" width={25} height={25} />
+							<Text size={{ initial: "1", md: "2" }}>Estamos com muitas mulheres na fila de espera por um atendimento e, no momento, não temos voluntárias suficientes para acolher novos pedidos.</Text>
 						</li>
 					</Flex>
 					<Flex
@@ -56,7 +58,8 @@ export default function Homepage() {
 						}}
 					>
 						<li>
-							<Text size={{ initial: "2", md: "3" }}>Deixando seus dados, você será avisada por e-mail assim que o cadastro for reaberto.</Text>
+							<Image src="/icons/user-profile.svg" alt="Ícone de um perfil de usuário" width={25} height={25} />
+							<Text size={{ initial: "1", md: "2" }}>Deixando seus dados, você será avisada por e-mail assim que o cadastro for reaberto.</Text>
 						</li>
 					</Flex>
 										<Flex
@@ -70,7 +73,8 @@ export default function Homepage() {
 						}}
 					>
 						<li>
-							<Text size={{ initial: "2", md: "3" }}>Não temos como garantir um prazo para essa reabertura, mas você pode contar com a gente: assim que houver novas vagas, entraremos em contato.</Text>
+							<Image src="/icons/planner.svg" alt="Ícone de uma agenda" width={25} height={25} />
+							<Text size={{ initial: "1", md: "2" }}>Não temos como garantir um prazo para essa reabertura, mas você pode contar com a gente: assim que houver novas vagas, entraremos em contato.</Text>
 						</li>
 					</Flex>
 				</ul>

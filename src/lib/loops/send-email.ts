@@ -4,7 +4,7 @@ import { LOOPS_API_KEY } from "../constants";
 export default async function sendEmail(
   email: string,
   id: string,
-  emailVars: Record<string, string>
+  firstName: string
 ): Promise<boolean> {
   try {
     const endpoint = "https://app.loops.so/api/v1/transactional";
@@ -15,7 +15,7 @@ export default async function sendEmail(
         email,
         transactionalId: id,
         dataVariables: {
-          ...emailVars,
+          first_name: firstName,
         },
       }),
       method: "POST",

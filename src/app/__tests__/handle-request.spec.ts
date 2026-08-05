@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib", () => ({
 	CONFIRM_REGISTRATION_EMAIL_ID: "confirm-registration-email-id",
-	createContact: vi.fn(),
+	updateContact: vi.fn(),
 	sendEmail: vi.fn(),
 	upsertSupportInterestData: vi.fn(),
 	logger: {
@@ -11,7 +11,7 @@ vi.mock("@/lib", () => ({
 }));
 
 import { POST } from "../handle-request/route";
-import { createContact, sendEmail, upsertSupportInterestData, logger } from "@/lib";
+import { updateContact, sendEmail, upsertSupportInterestData, logger } from "@/lib";
 
 const validPayload = {
 	email: "joana@example.com",
@@ -42,10 +42,8 @@ describe("handle-request route", () => {
 		expect(response.status).toBe(200);
 		expect(await response.json()).toEqual(expectedResponse);
 		expect(upsertSupportInterestData).toHaveBeenCalledWith(validPayload);
-		expect(createContact).toHaveBeenCalledWith(validPayload.email, validPayload.firstName);
-		expect(sendEmail).toHaveBeenCalledWith(validPayload.email, "confirm-registration-email-id", {
-			firsTName: validPayload.firstName,
-		});
+		expect(updateContact).toHaveBeenCalledWith(validPayload.email, validPayload.firstName, validPayload.state, validPayload.supportType);
+		expect(sendEmail).toHaveBeenCalledWith(validPayload.email, "confirm-registration-email-id", validPayload.firstName);
 	});
 
 	it("should return 400 when payload is invalid", async () => {
@@ -56,7 +54,7 @@ describe("handle-request route", () => {
 		expect(response.status).toBe(400);
 		expect(await response.text()).toContain("Validation error");
 		expect(upsertSupportInterestData).not.toHaveBeenCalled();
-		expect(createContact).not.toHaveBeenCalled();
+		expect(updateContact).not.toHaveBeenCalled();
 		expect(sendEmail).not.toHaveBeenCalled();
 	});
 
