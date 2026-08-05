@@ -5,6 +5,7 @@ export default async function updateContact(
   email: string,
   firstName: string,
   state: string,
+  supportType: string
 ): Promise<boolean> {
   try {
     const endpoint = "https://app.loops.so/api/v1/contacts/update";
@@ -14,7 +15,7 @@ export default async function updateContact(
       body: JSON.stringify({
         email: email,
         firstName: firstName,
-        interesseEmAtendimento: true,
+        interesseEmAtendimento: supportType ,
         state: state
       }),
       method: "PUT",

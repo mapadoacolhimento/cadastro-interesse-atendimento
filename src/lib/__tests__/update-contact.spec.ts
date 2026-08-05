@@ -12,6 +12,7 @@ import updateContact from "../loops/update-contact";
 const email = "joana@example.com";
 const firstName = "Joana";
 const state = "SP";
+const supportType = 'legal'
 
 describe("createContact", () => {
 	afterEach(() => {
@@ -21,7 +22,7 @@ describe("createContact", () => {
 	it("returns true when the fetch request succeeds", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: true } as Response);
 
-		const result = await updateContact(email, firstName, state);
+		const result = await updateContact(email, firstName, state, supportType);
 
 		expect(result).toBe(true);
 		expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -36,7 +37,7 @@ describe("createContact", () => {
 				body: JSON.stringify({
 					email,
 					firstName,
-					interesseEmAtendimento: true,
+					interesseEmAtendimento: supportType,
         			state: state
 				}),
 			})
@@ -46,7 +47,7 @@ describe("createContact", () => {
 	it("returns false when the fetch response is not ok", async () => {
 		mockFetch.mockResolvedValueOnce({ ok: false, statusText: "Bad Request" } as Response);
 
-		const result = await updateContact(email, firstName, state);
+		const result = await updateContact(email, firstName, state, supportType);
 
 		expect(result).toBe(false);
 	});
@@ -54,7 +55,7 @@ describe("createContact", () => {
 	it("returns false when fetch throws an error", async () => {
 		mockFetch.mockRejectedValueOnce(new Error("network failure"));
 
-		const result = await updateContact(email, firstName, state);
+		const result = await updateContact(email, firstName, state, supportType);
 
 		expect(result).toBe(false);
 	});

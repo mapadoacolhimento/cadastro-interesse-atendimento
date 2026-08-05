@@ -42,7 +42,7 @@ describe("handle-request route", () => {
 		expect(response.status).toBe(200);
 		expect(await response.json()).toEqual(expectedResponse);
 		expect(upsertSupportInterestData).toHaveBeenCalledWith(validPayload);
-		expect(updateContact).toHaveBeenCalledWith(validPayload.email, validPayload.firstName, validPayload.state);
+		expect(updateContact).toHaveBeenCalledWith(validPayload.email, validPayload.firstName, validPayload.state, validPayload.supportType);
 		expect(sendEmail).toHaveBeenCalledWith(validPayload.email, "confirm-registration-email-id", validPayload.firstName);
 	});
 

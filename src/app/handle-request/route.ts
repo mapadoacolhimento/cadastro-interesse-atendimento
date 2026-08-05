@@ -9,8 +9,6 @@ import {
 } from "@/lib";
 import { getErrorMessage } from "@/utils";
 
-export const maxDuration = 30;
-
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
 	confirmEmail: Yup.string().email().required(),
@@ -34,7 +32,7 @@ export async function POST(request: Request) {
 		await sendEmail(payload.email, CONFIRM_REGISTRATION_EMAIL_ID, payload.firstName)
 		
 		//atualiza contato no loops
-		await updateContact( payload.email, payload.firstName, payload.state); 
+		await updateContact( payload.email, payload.firstName, payload.state, payload.supportType); 
 		
 
 		return Response.json(response);
