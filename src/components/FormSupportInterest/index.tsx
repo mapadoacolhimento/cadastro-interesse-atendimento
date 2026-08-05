@@ -23,6 +23,7 @@ const formSupportInterestFieldsSchema = Yup.object({
 	confirmEmail: Yup.string()
 		.oneOf([Yup.ref("email")], "Os e-mails precisam ser iguais.")
 		.required("Esse campo é obrigatório."),
+	state: Yup.string().required("Esse campo é obrigatório."),		
 	supportType: Yup.string().oneOf(["psychological", "legal", "legal_and_psychological"])
 		.required("Esse campo é obrigatório."),
 });
@@ -81,7 +82,7 @@ export default function FormSupportInterest() {
 	async function onSubmit(values: Values) {
 		
 		try {
-			setStatus(Status.idle);
+			setStatus(Status.loading);
 			const formattedValues = formatRegisterFormValues(values);
 
 			const response = await fetch("/handle-request", {
@@ -95,7 +96,7 @@ export default function FormSupportInterest() {
 			if (!response.ok) {
 				throw new Error(response.statusText);
 			}
-
+			setStatus(Status.idle);
 			return router.push("/cadastro-finalizado");
 			
 		} catch (error) {
@@ -119,7 +120,7 @@ export default function FormSupportInterest() {
 				onSubmit={onSubmit}
 				validationSchema={formSupportInterestFieldsSchema}
 			>
-				{() => (
+				{({isSubmitting}) => (
 					<Form style={{ width: "100%" }}>
 
 						<>
@@ -136,12 +137,10 @@ export default function FormSupportInterest() {
 								<Flex direction={"column"} gap={"4"} width={"100%"}>
 								< FormSupportInterestFields />
 								
-								<Button size={"4"} type={"submit"}>						
+								<Button size={"4"} type={"submit"} disabled={isSubmitting}>						
 								Enviar					
 								</Button>
 								</Flex>
-
-							
 
 							</Flex>
 							<p></p>
