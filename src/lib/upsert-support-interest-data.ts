@@ -17,7 +17,7 @@ async function upsertSupportInterestData(values: Values) {
 				updatedAt: new Date().toISOString(),
 			},
 			create: {
-				...values,
+				...values
 			},
 		});
 

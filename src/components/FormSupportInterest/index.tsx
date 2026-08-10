@@ -4,7 +4,7 @@ import { formatRegisterFormValues } from "@/utils";
 import {useState,} from "react";
 import { useRouter } from "next/navigation";
 import { Form, Formik } from "formik";
-import { Box, Flex, Link as ExternalLink,Text, Strong } from "@radix-ui/themes";
+import { Box, Flex, Link as ExternalLink,Text, Strong, Button } from "@radix-ui/themes";
 import { Illustration } from "@/components";
 import { Status,type Values } from "@/types";
 import * as Yup from "yup";
@@ -23,8 +23,8 @@ const formSupportInterestFieldsSchema = Yup.object({
 	confirmEmail: Yup.string()
 		.oneOf([Yup.ref("email")], "Os e-mails precisam ser iguais.")
 		.required("Esse campo é obrigatório."),
-	supportType: Yup.array()
-		.of(Yup.string().oneOf(["psychological", "legal", "legal_and_psychological"]))
+	state: Yup.string().required("Esse campo é obrigatório."),		
+	supportType: Yup.string().oneOf(["psychological", "legal", "legal_and_psychological"])
 		.required("Esse campo é obrigatório."),
 });
 
@@ -82,7 +82,7 @@ export default function FormSupportInterest() {
 	async function onSubmit(values: Values) {
 		
 		try {
-			setStatus(Status.idle);
+			setStatus(Status.loading);
 			const formattedValues = formatRegisterFormValues(values);
 
 			const response = await fetch("/handle-request", {
@@ -96,7 +96,7 @@ export default function FormSupportInterest() {
 			if (!response.ok) {
 				throw new Error(response.statusText);
 			}
-
+			setStatus(Status.idle);
 			return router.push("/cadastro-finalizado");
 			
 		} catch (error) {
@@ -120,7 +120,7 @@ export default function FormSupportInterest() {
 				onSubmit={onSubmit}
 				validationSchema={formSupportInterestFieldsSchema}
 			>
-				{() => (
+				{({isSubmitting}) => (
 					<Form style={{ width: "100%" }}>
 
 						<>
@@ -136,8 +136,14 @@ export default function FormSupportInterest() {
 							>
 								<Flex direction={"column"} gap={"4"} width={"100%"}>
 								< FormSupportInterestFields />
+								
+								<Button size={"4"} type={"submit"} disabled={isSubmitting}>						
+								Enviar					
+								</Button>
 								</Flex>
+
 							</Flex>
+							<p></p>
 							<Text as={"p"} size={"2"} align={"center"}>
 					         Se você precisa de um atendimento de urgência, Ligue 180 e/ou{" "}
 								<Strong>

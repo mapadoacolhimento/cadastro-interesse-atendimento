@@ -36,6 +36,6 @@ export const supportTypeOptions = [
 	{label: "Os dois",value: "legal_and_psychological"},
 ];
 
-export const CONFIRM_REGISTRATION_EMAIL_ID = "1234";
+export const CONFIRM_REGISTRATION_EMAIL_ID = "cmsetvbaq023u0jzz0gosw89r";
 
 export const LOOPS_API_KEY = process.env["LOOPS_API_KEY"]

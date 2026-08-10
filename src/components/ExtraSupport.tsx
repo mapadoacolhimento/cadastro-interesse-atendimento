@@ -14,7 +14,7 @@ const ExtraSupport = () => (
 				color={"purple"}
 				highContrast
 			>
-				Como podemos te ajudar:
+				Como podemos te ajudar agora:
 			</Heading>
 		</Box>
 		<Box pb={"5"} asChild>

@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/db", () => ({
 	prisma: {
-		supportInterestData: {
+		supportInterestRegisterData: {
 			upsert: vi.fn(),
 		},
 	},
@@ -36,15 +36,15 @@ describe("upsertSupportInterestData", () => {
 	});
 
 	it("returns JSON response with id when upsert succeeds", async () => {
-		vi.mocked(prisma.supportInterestData.upsert).mockResolvedValueOnce({
-			id: "abc123",
-		});
+		vi.mocked(prisma.supportInterestRegisterData.upsert).mockResolvedValueOnce({
+            id: "abc123"
+        });
 
 		const response = await upsertSupportInterestData(payload);
 
 		expect(response.status).toBe(200);
 		expect(await response.json()).toEqual({ id: "abc123" });
-		expect(prisma.supportInterestData.upsert).toHaveBeenCalledWith({
+		expect(prisma.supportInterestRegisterData.upsert).toHaveBeenCalledWith({
 			where: { email: payload.email },
 			update: {
 				...payload,
@@ -59,7 +59,7 @@ describe("upsertSupportInterestData", () => {
 	it("returns 400 when Prisma throws a validation error", async () => {
 		const validationError = new Error("invalid payload");
 		(validationError as Record<string, unknown>).name = "ValidationError";
-		vi.mocked(prisma.supportInterestData.upsert).mockRejectedValueOnce(validationError);
+		vi.mocked(prisma.supportInterestRegisterData.upsert).mockRejectedValueOnce(validationError);
 
 		const response = await upsertSupportInterestData(payload);
 
@@ -70,7 +70,7 @@ describe("upsertSupportInterestData", () => {
 
 	it("returns 500 when Prisma throws a generic error", async () => {
 		const genericError = new Error("database failure");
-		vi.mocked(prisma.supportInterestData.upsert).mockRejectedValueOnce(genericError);
+		vi.mocked(prisma.supportInterestRegisterData.upsert).mockRejectedValueOnce(genericError);
 
 		const response = await upsertSupportInterestData(payload);
 

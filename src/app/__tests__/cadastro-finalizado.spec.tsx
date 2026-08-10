@@ -11,18 +11,18 @@ describe("<RegistrationCompleted />", () => {
 		setup();
 
 		const heading1 = screen.getByRole("heading", {
-			name: "Cadstro Finalizado!",
+			name: "Recebemos seu registro de interesse.",
 			level: 1,
 		});
 		expect(heading1).toBeInTheDocument();
 
 		const description1 = screen.getByText(
-			"Entraremos em contato por e-mail assim que o cadastro for reaberto."
+			"Obrigada por confiar em nós para dar esse passo e buscar apoio. Você será avisada por e-mail assim que o cadastro reabrir. Fique de olho na sua caixa de entrada!"
 		);
 		expect(description1).toBeInTheDocument();
 
 		const heading2 = screen.getByRole("heading", {
-			name: "Como podemos te ajudar:",
+			name: "Como podemos te ajudar agora:",
 			level: 2,
 		});
 

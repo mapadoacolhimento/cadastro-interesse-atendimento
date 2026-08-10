@@ -33,6 +33,9 @@
       ],
       "@/constants": [
         "./src/lib/constants.ts"
+      ],
+      "@/lib": [
+        "./src/lib"
       ]
     },
     "types": [
