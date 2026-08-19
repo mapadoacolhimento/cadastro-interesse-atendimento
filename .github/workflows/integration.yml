@@ -73,23 +73,9 @@ jobs:
         node-version: [22.x]
         pnpm-version: [9.x]
     env:
-      DATABASE_URL: postgresql://user:password@localhost:5432/mapa
       MONGO_DB_URL: mongodb://root:password@localhost:27017/mapa-org?authSource=admin&replicaSet=rs0
 
     services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
       mongodb:
         image: prismagraphql/mongo-single-replica:4.4.3-bionic
         ports:
@@ -159,10 +145,6 @@ jobs:
       - name: Push current migrations to test database
         run: pnpm db:push 
         timeout-minutes: 5
-
-      - name: Seed db
-        run: pnpm db:seed
-        timeout-minutes: 3
 
       - name: Build application
         run: pnpm run build
