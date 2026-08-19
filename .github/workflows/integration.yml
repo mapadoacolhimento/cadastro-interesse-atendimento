@@ -157,7 +157,7 @@ jobs:
         timeout-minutes: 5
 
       - name: Push current migrations to test database
-        run: pnpm db:push && pnpm mongodb:push
+        run: pnpm db:push 
         timeout-minutes: 5
 
       - name: Seed db
