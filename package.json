@@ -16,7 +16,6 @@
     "db:push": "prisma db push --schema prisma/schema.prisma",
     "test": "vitest -c ./vitest.config.unit.mjs",
     "test:unit:ci": "vitest run -c ./vitest.config.unit.mjs --coverage",
-    "test:int:ci": "vitest run -c ./vitest.config.integration.mjs --coverage",
     "e2e": "cypress open",
     "e2e:ci": "cypress run --browser chrome"
   },
